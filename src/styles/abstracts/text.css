@@ -1,0 +1,10 @@
+:root {
+	--font-primary: 'Montserrat', sans-serif;
+	--font-secondary: 'Open Sans', Helvetica, Arial, sans-serif;
+
+	--font-reg: 400;
+	--font-thin: 300;
+	--font-thinner: 100;
+	--font-bold: 600;
+	--font-bolder: 700;
+}

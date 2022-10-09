@@ -1,0 +1,44 @@
+@import url('./abstracts/colors.css');
+@import url('./abstracts/text.css');
+@import url('./components/buttons.css');
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+img,
+picture,
+iframe {
+	display: block;
+	width: 100%;
+}
+
+html {
+	background-color: var(--color-secondary-background);
+}
+
+main {
+	padding: 0 2em 0 2em;
+	max-width: 1500px;
+	margin: auto;
+	background-color: var(--color-secondary-lighter);
+}
+
+h1 {
+	color: var(--color-primary-base);
+	font-family: var(--font-primary);
+	font-weight: var(--font-bold);
+}
+
+h2 {
+	color: var(--color-contrast-base);
+	font-family: var(--font-secondary);
+}
