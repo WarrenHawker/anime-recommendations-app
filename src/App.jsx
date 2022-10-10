@@ -1,23 +1,39 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
+import AnimeList from "./components/anime-list";
+import AnimeFilter from "./components/anime-filter";
 
 
 export default function App() {
   const [options, setOptions] = useState({
-    genre: null,
+    genres: null,
     status: null,
-    minScore: null,
+    min_score: null,
     rating: null,
-    animePerPage: null, //1-25
-    pageNumber: null,
+    limit: null, //1-25 number of anime per page
+    page: null, //returned page (if more than 25 entries)
   });
 
-  const [animeData, setAnimeData] = useState(null);
+  const [searchData, setSearchData] = useState(null);
 
   useEffect(() => {
-    axios.get('https://api.jikan.moe/v4/anime?genres=36')
+    let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
+    Object.entries(options).forEach(([key, value]) => {
+      if(value) {
+        fetchUrl.searchParams.append(key, value)
+      }
+    })
+    axios.get(fetchUrl)
     .then(res => {
-      const animeInfo = res.data.data.map((anime) => {
+      const metaData = {
+        currentPage: res.data.meta.current_page,
+        totalPages: res.data.meta.last_page,
+        resultsPerPage: res.data.meta.per_page,
+        totalResults: res.data.meta.total,
+        resultFrom: res.data.meta.from,
+        resultTo: res.data.meta.to
+      }
+      const animeData = res.data.data.map((anime) => {
         return {
           title: anime.title,
           genres: anime.genres.map((genre) => {
@@ -36,23 +52,22 @@ export default function App() {
           score: anime.score,
         }
       })
-      setAnimeData(animeInfo)
+      setSearchData({metaData, animeData})
       
     })
   }, [])
 
-  console.log(animeData)
+  function setAnimeFilter() {
+
+  }
   
-  if(animeData) {
+  if(searchData) {
     return (
       <main>
         <h1>Anime Recommendations</h1>
         <h2>By Warren Hawker</h2>
-        {
-          animeData.map((anime) => {
-            return <img src={anime.image}></img>
-          })
-        }
+       <AnimeFilter setAnimeFilter={setAnimeFilter}/>
+       <AnimeList data={searchData}/>
       </main>
     )
   }
