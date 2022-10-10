@@ -8,7 +8,7 @@ export default function App() {
   const [options, setOptions] = useState({
     genres: null,
     status: null,
-    min_score: null,
+    min_score: null, //0-10
     rating: null,
     limit: null, //1-25 number of anime per page
     page: null, //returned page (if more than 25 entries)
@@ -26,12 +26,10 @@ export default function App() {
     axios.get(fetchUrl)
     .then(res => {
       const metaData = {
-        currentPage: res.data.meta.current_page,
-        totalPages: res.data.meta.last_page,
-        resultsPerPage: res.data.meta.per_page,
-        totalResults: res.data.meta.total,
-        resultFrom: res.data.meta.from,
-        resultTo: res.data.meta.to
+        currentPage: res.data.pagination.current_page,
+        totalPages: res.data.pagination.last_visible_page,
+        resultsPerPage: res.data.pagination.items.per_page,
+        totalResults: res.data.pagination.items.total,
       }
       const animeData = res.data.data.map((anime) => {
         return {
