@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { genres, scores, ratings, statuses } from "../searchParams"
+import { genres, scores, ratings, statuses, types } from "../searchParams"
 
 export default function AnimeFilter(props) {
   const [genresSelected, setGenresSelected] = useState(genres)
   const [minScore, setMinScore] = useState()
   const [minRating, setMinRating] = useState()
   const [chosenStatus, setChosenStatus] = useState()
+  const [chosenType, setChosenType] = useState()
 
   const genreSelectToggle = (e) => {
     const selectedID = e.target.id.slice(6);
@@ -56,14 +57,27 @@ export default function AnimeFilter(props) {
   })
 
   const statusSelectToggle = (e) => {
-    setChosenStatus(e.target.value.slice(7))
+    setChosenStatus(e.target.id.slice(7))
   }
 
   const statusesDisplay = statuses.map((status)=> {
     return (
       <div key={status.id}>
-        <input onChange ={statusSelectToggle} type="radio" id={`status-${status.name}`} name="status" value={`status-${status.name}`}></input>
+        <input onChange ={statusSelectToggle} type="radio" id={`status-${status.id}`} name="status" value={`status-${status.name}`}></input>
         <label htmlFor={`status-${status.name}`}>{status.name}</label>
+      </div>
+    )
+  })
+
+  const typeSelectToggle = (e) => {
+    setChosenType(e.target.id.slice(5))
+  }
+
+  const typesDisplay = types.map((type) => {
+    return (
+      <div key={type.id}>
+        <input onChange ={typeSelectToggle} type="radio" id={`type-${type.id}`} name="type" value={`type-${type.name}`}></input>
+        <label htmlFor={`type-${type.name}`}>{type.name}</label>
       </div>
     )
   })
@@ -72,6 +86,7 @@ export default function AnimeFilter(props) {
     e.preventDefault();
     const genres = genresSelected.filter(genre => genre.isChecked)
     const searchOptions = {
+      type: chosenType,
       status: chosenStatus,
       rating: minRating,
       score: minScore,
@@ -103,6 +118,9 @@ export default function AnimeFilter(props) {
       case 'status':
         setChosenStatus(null)
         break;
+      case 'type': 
+        setChosenType(null)
+        break;
     }
   }
 	//prettier-ignore
@@ -127,6 +145,11 @@ export default function AnimeFilter(props) {
         <legend>Status</legend>
         {statusesDisplay}
         <button id="btn-clear-status" onClick={clearFilter}>Clear Filter</button>
+      </fieldset>
+      <fieldset id="type-selection">
+        <legend>Movie or TV Series</legend>
+        {typesDisplay}
+        <button id="btn-clear-type" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
       <button>Search</button>
     </form>

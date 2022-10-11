@@ -6,6 +6,7 @@ import AnimeFilter from "./components/anime-filter";
 
 export default function App() {
   const [options, setOptions] = useState({
+    type: null, //tv or movie
     genres: null,
     status: null,
     min_score: null, //0-10
@@ -15,8 +16,6 @@ export default function App() {
   });
 
   const [searchData, setSearchData] = useState(null);
-
-  console.log(searchData)
 
   useEffect(() => {
     let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
@@ -50,6 +49,7 @@ export default function App() {
           status: anime.status,
           year: anime.year,
           score: anime.score,
+          id: anime.mal_id
         }
       })
       setSearchData({metaData, animeData})
@@ -58,6 +58,7 @@ export default function App() {
 
   function setAnimeFilter(data) {
     setOptions({
+      type: data.type,
       genres: data.genres.toString(),
       status: data.status,
       min_score: data.score, 

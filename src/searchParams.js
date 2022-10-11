@@ -164,13 +164,24 @@ const ratings = [
 
 const statuses = [
 	{
-		id: 1,
+		id: 'complete',
 		name: 'Complete',
 	},
 	{
-		id: 2,
+		id: 'airing',
 		name: 'Airing',
 	},
 ];
 
-export { genres, scores, ratings, statuses };
+const types = [
+	{
+		id: 'tv',
+		name: 'TV',
+	},
+	{
+		id: 'movie',
+		name: 'Movie',
+	},
+];
+
+export { genres, scores, ratings, statuses, types };
