@@ -5,6 +5,9 @@ import AnimeFilter from "./components/anime-filter";
 
 
 export default function App() {
+  const fetchData = useRef(false);
+  const [searchData, setSearchData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState({
     type: null, //tv or movie
     genres: null,
@@ -14,11 +17,6 @@ export default function App() {
     limit: null, //1-25 number of anime per page
     page: null, //returned page (if more than 25 entries)
   });
-  const fetchData = useRef(false);
-  const [searchData, setSearchData] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-
 
   useEffect(() => {
     if(fetchData.current) {
@@ -78,9 +76,7 @@ export default function App() {
     })
     setLoading(true);
   }
-
-  console.log(loading)
-  
+    console.log(searchData)
   return (
     <main>
       <h1>Anime Recommendations</h1>
@@ -88,6 +84,7 @@ export default function App() {
       <h3>Use the filters below to find the perfect anime for you!</h3>
       <AnimeFilter setAnimeFilter={setAnimeFilter}/>
       <div className="recommendations-container">
+        {searchData.animeData.length<1 ? <h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3> : null}
         {searchData ? <AnimeList data={searchData}/> : null}
         {loading ? <div className="spinner-loader"></div> : null}
       </div>

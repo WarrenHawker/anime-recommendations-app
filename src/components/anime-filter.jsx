@@ -125,7 +125,7 @@ export default function AnimeFilter(props) {
   }
 	//prettier-ignore
 	return (
-    <form onSubmit={handleFormSubmission}>
+    <form className="anime-filter" onSubmit={handleFormSubmission}>
       <fieldset className="double-column" id="genre-selection">
         <legend>Genres</legend>
         {genresDisplay}
