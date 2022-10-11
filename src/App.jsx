@@ -84,8 +84,10 @@ export default function App() {
       <h3>Use the filters below to find the perfect anime for you!</h3>
       <AnimeFilter setAnimeFilter={setAnimeFilter}/>
       <div className="recommendations-container">
-        {searchData.animeData.length<1 ? <h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3> : null}
-        {searchData ? <AnimeList data={searchData}/> : null}
+        {searchData ? 
+          searchData.animeData<1 ? 
+            <h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3> : <AnimeList data={searchData}/>
+         : null}
         {loading ? <div className="spinner-loader"></div> : null}
       </div>
       
