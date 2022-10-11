@@ -5,6 +5,7 @@ export default function Anime(props) {
 		<>
 			<h2>{props.data.title}<span>{props.data.type=='TV'? 'TV Series' : 'Movie'}</span></h2>
 			<p>{props.data.rating}</p>
+			<p>score:{props.data.score}</p>
 			<h3>Genres: {props.data.genres.join(', ')}</h3>
 			<h3>Themes: {props.data.themes.join(', ')}</h3>
 			<p>{props.data.synopsis}</p>	

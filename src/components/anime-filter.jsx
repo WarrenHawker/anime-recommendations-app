@@ -126,32 +126,34 @@ export default function AnimeFilter(props) {
 	//prettier-ignore
 	return (
     <form onSubmit={handleFormSubmission}>
-      <fieldset id="genre-selection">
+      <fieldset className="double-column" id="genre-selection">
         <legend>Genres</legend>
         {genresDisplay}
-        <button id="btn-clear-genres" onClick={clearFilter}>Clear Filter</button>
+        <button className="btn btn-secondary" id="btn-clear-genres" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
-      <fieldset id="score-selection">
+      <fieldset className="double-column" id="score-selection">
         <legend>Minimum Score</legend>
         {scoresDisplay}
-        <button id="btn-clear-score" onClick={clearFilter}>Clear Filter</button>
+        <button className="btn btn-secondary" id="btn-clear-score" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
-      <fieldset id="rating-selection">
+      <fieldset className="single-column" id="rating-selection">
         <legend>Minimum Age Rating</legend>
         {ratingsDisplay}
-        <button id="btn-clear-rating" onClick={clearFilter}>Clear Filter</button>
+        <button className="btn btn-secondary" id="btn-clear-rating" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
-      <fieldset id="status-selection">
-        <legend>Status</legend>
-        {statusesDisplay}
-        <button id="btn-clear-status" onClick={clearFilter}>Clear Filter</button>
-      </fieldset>
-      <fieldset id="type-selection">
-        <legend>Movie or TV Series</legend>
-        {typesDisplay}
-        <button id="btn-clear-type" onClick={clearFilter}>Clear Filter</button>
-      </fieldset>
-      <button>Search</button>
+      <div className="fieldset-container">
+        <fieldset className="single-column" id="status-selection">
+          <legend>Status</legend>
+          {statusesDisplay}
+          <button className="btn btn-secondary" id="btn-clear-status" onClick={clearFilter}>Clear Filter</button>
+        </fieldset>
+        <fieldset className="single-column" id="type-selection">
+          <legend>Movie or TV Series</legend>
+          {typesDisplay}
+          <button className="btn btn-secondary" id="btn-clear-type" onClick={clearFilter}>Clear Filter</button>
+        </fieldset>
+      </div>
+      <button className="btn btn-primary">Search</button>
     </form>
   )
 }

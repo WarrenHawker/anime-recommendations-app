@@ -1,6 +1,8 @@
 @import url('./abstracts/colors.css');
 @import url('./abstracts/text.css');
 @import url('./components/buttons.css');
+@import url('./components/anime-filter.css');
+@import url('./components/spinner-loader.css');
 
 *,
 *::after,
@@ -44,4 +46,8 @@ h2 {
 
 img {
 	width: 100px;
+}
+
+.recommendations-container {
+	position: relative;
 }
