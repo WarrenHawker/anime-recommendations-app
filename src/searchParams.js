@@ -95,53 +95,82 @@ const scores = [
 	{
 		id: 10,
 		name: 'Masterpiece',
-		isSelected: false,
 	},
 	{
 		id: 9,
 		name: 'Great',
-		isSelected: false,
 	},
 	{
 		id: 8,
 		name: 'Very Good',
-		isSelected: false,
 	},
 	{
 		id: 7,
 		name: 'Good',
-		isSelected: false,
 	},
 	{
 		id: 6,
 		name: 'Fine',
-		isSelected: false,
 	},
 	{
 		id: 5,
 		name: 'Average',
-		isSelected: false,
 	},
 	{
 		id: 4,
 		name: 'Bad',
-		isSelected: false,
 	},
 	{
 		id: 3,
 		name: 'Very Bad',
-		isSelected: false,
 	},
 	{
 		id: 2,
 		name: 'Horrible',
-		isSelected: false,
 	},
 	{
 		id: 1,
 		name: 'Appalling',
-		isSelected: false,
 	},
 ];
 
-export { genres, scores };
+const ratings = [
+	{
+		id: 'g',
+		name: 'G',
+		description: 'All Ages',
+	},
+	{
+		id: 'pg',
+		name: 'PG',
+		description: 'Children',
+	},
+	{
+		id: 'pg13',
+		name: 'PG-13',
+		description: 'Teens 13 or older',
+	},
+	{
+		id: 'r17',
+		name: 'R',
+		description: '17+ (Violence & Profanity) ',
+	},
+	{
+		id: 'r',
+		name: 'R+',
+		description: 'Mild Nudity',
+	},
+];
+
+const statuses = [
+	{
+		id: 1,
+		name: 'Complete',
+	},
+	{
+		id: 2,
+		name: 'Airing',
+	},
+];
+
+export { genres, scores, ratings, statuses };

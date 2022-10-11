@@ -16,6 +16,8 @@ export default function App() {
 
   const [searchData, setSearchData] = useState(null);
 
+  console.log(searchData)
+
   useEffect(() => {
     let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
     Object.entries(options).forEach(([key, value]) => {
@@ -51,12 +53,18 @@ export default function App() {
         }
       })
       setSearchData({metaData, animeData})
-      
     })
-  }, [])
+  }, [options])
 
-  function setAnimeFilter() {
-
+  function setAnimeFilter(data) {
+    setOptions({
+      genres: data.genres.toString(),
+      status: data.status,
+      min_score: data.score, 
+      rating: data.rating,
+      limit: null, 
+      page: null, 
+    })
   }
   
   if(searchData) {
