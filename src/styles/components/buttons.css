@@ -1,11 +1,37 @@
 .btn {
-	color: aquamarine;
+	font-family: var(--font-primary);
+	font-weight: var(--font-bold);
+	cursor: pointer;
+	margin: 1em auto 1em auto;
+	padding: 0.5em 2em 0.5em 2em;
+	grid-column: 1/-1;
+	border-radius: 2em;
+	display: block;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: var(--color-contrast-dark);
 }
 
 .btn-primary {
-	color: blueviolet;
+	background-color: var(--color-primary-base);
+	border: 2px solid var(--color-contrast-dark);
+	font-size: var(--font-size-h5);
 }
 
 .btn-secondary {
-	color: green;
+	background-color: transparent;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+	background-color: var(--color-primary-dark);
+	color: #ffffff;
+	border: 2px solid #ffffff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+	background-color: var(--color-contrast-base);
+	color: #ffffff;
+	border: 2px solid #ffffff;
 }

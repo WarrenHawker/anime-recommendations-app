@@ -23,10 +23,10 @@ export default function AnimeFilter(props) {
 
   const genresDisplay = genres.map((genre) => {
     return (
-      <div key={genre.id}>
+      <label className="filter-container checkbox" key={genre.id} htmlFor={`genre-${genre.id}`}>{genre.name}
         <input onChange={genreSelectToggle} type="checkbox" id={`genre-${genre.id}`} name={`genre-${genre.id}`}></input>
-        <label htmlFor={`genre-${genre.id}`}>{genre.name}</label>
-      </div>
+        <span className="checkmark square"></span>
+      </label>
     )
   })
 
@@ -36,10 +36,15 @@ export default function AnimeFilter(props) {
 
   const scoresDisplay = scores.map((score) => {
     return (
-      <div key={score.id}>
-        <input onChange ={scoreSelectToggle} type="radio" id={`score-${score.id}`} name="score" value={`score-${score.id}`}></input>
-        <label htmlFor={`score-${score.id}`}>{score.name}</label>
-      </div>
+      <label className="filter-container radio" key={score.id} htmlFor={`score-${score.id}`}>
+        {`(${score.id}) ${score.name}`}
+        
+          <input 
+            onChange={scoreSelectToggle} type="radio" id={`score-${score.id}`} name="score" value={`score-${score.id}`}>
+          </input>
+
+          <span className="checkmark circle"></span>
+      </label>
     )
   })
 
@@ -49,10 +54,14 @@ export default function AnimeFilter(props) {
 
   const ratingsDisplay = ratings.map((rating) => {
     return (
-      <div key={rating.id}>
-        <input onChange ={ratingSelectToggle} type="radio" id={`rating-${rating.id}`} name="rating" value={`rating-${rating.id}`}></input>
-        <label htmlFor={`rating-${rating.id}`}>{`${rating.name} (${rating.description})`}</label>
-      </div>
+      <label className="filter-container radio" key={rating.id} htmlFor={`rating-${rating.id}`}>
+        {`${rating.name} (${rating.description})`}
+          <input 
+            onChange={ratingSelectToggle} type="radio" id={`rating-${rating.id}`} name="rating" value={`rating-${rating.id}`}>
+          </input>
+
+          <span className="checkmark circle"></span>
+      </label>
     )
   })
 
@@ -61,11 +70,14 @@ export default function AnimeFilter(props) {
   }
 
   const statusesDisplay = statuses.map((status)=> {
-    return (
-      <div key={status.id}>
-        <input onChange ={statusSelectToggle} type="radio" id={`status-${status.id}`} name="status" value={`status-${status.name}`}></input>
-        <label htmlFor={`status-${status.name}`}>{status.name}</label>
-      </div>
+    return ( 
+      <label className="filter-container radio" key={status.id} htmlFor={`status-${status.id}`}>{status.name}
+        <input 
+          onClick={statusSelectToggle} type="radio" id={`status-${status.id}`} name="status" value={`status-${status.name}`}>
+        </input>
+
+        <span className="checkmark circle"></span>
+      </label>
     )
   })
 
@@ -75,10 +87,10 @@ export default function AnimeFilter(props) {
 
   const typesDisplay = types.map((type) => {
     return (
-      <div key={type.id}>
+      <label className="filter-container radio" key={type.id} htmlFor={`type-${type.id}`}>{type.name}
         <input onChange ={typeSelectToggle} type="radio" id={`type-${type.id}`} name="type" value={`type-${type.name}`}></input>
-        <label htmlFor={`type-${type.name}`}>{type.name}</label>
-      </div>
+        <span className="checkmark circle"></span>
+      </label>
     )
   })
 
@@ -126,28 +138,28 @@ export default function AnimeFilter(props) {
 	//prettier-ignore
 	return (
     <form className="anime-filter" onSubmit={handleFormSubmission}>
-      <fieldset className="double-column" id="genre-selection">
+      <fieldset className="double-column">
         <legend>Genres</legend>
         {genresDisplay}
         <button className="btn btn-secondary" id="btn-clear-genres" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
-      <fieldset className="double-column" id="score-selection">
+      <fieldset>
         <legend>Minimum Score</legend>
-        {scoresDisplay}
+        <div className="scores-filter-container">{scoresDisplay}</div>
         <button className="btn btn-secondary" id="btn-clear-score" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
-      <fieldset className="single-column" id="rating-selection">
+      <fieldset className="single-column">
         <legend>Minimum Age Rating</legend>
         {ratingsDisplay}
         <button className="btn btn-secondary" id="btn-clear-rating" onClick={clearFilter}>Clear Filter</button>
       </fieldset>
       <div className="fieldset-container">
-        <fieldset className="single-column" id="status-selection">
+        <fieldset>
           <legend>Status</legend>
           {statusesDisplay}
           <button className="btn btn-secondary" id="btn-clear-status" onClick={clearFilter}>Clear Filter</button>
         </fieldset>
-        <fieldset className="single-column" id="type-selection">
+        <fieldset>
           <legend>Movie or TV Series</legend>
           {typesDisplay}
           <button className="btn btn-secondary" id="btn-clear-type" onClick={clearFilter}>Clear Filter</button>

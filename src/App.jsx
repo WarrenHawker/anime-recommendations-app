@@ -79,8 +79,8 @@ export default function App() {
     console.log(searchData)
   return (
     <main>
-      <h1>Anime Recommendations</h1>
-      <h2>Find your next favourite anime</h2>
+      <h1>Anime Finder</h1>
+      <h2>Discover your next anime binge</h2>
       <h3>Use the filters below to find the perfect anime for you!</h3>
       <AnimeFilter setAnimeFilter={setAnimeFilter}/>
       <div className="recommendations-container">

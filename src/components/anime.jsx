@@ -2,8 +2,8 @@ export default function Anime(props) {
 	
 	//prettier-ignore
 	return (
-		<>
-			<h2>{props.data.title}<span>{props.data.type=='TV'? 'TV Series' : 'Movie'}</span></h2>
+		<div className="anime-container">
+			<h1>{props.data.title}<span>{props.data.type=='TV'? 'TV Series' : 'Movie'}</span></h1>
 			<p>{props.data.rating}</p>
 			<p>score:{props.data.score}</p>
 			<h3>Genres: {props.data.genres.join(', ')}</h3>
@@ -13,6 +13,6 @@ export default function Anime(props) {
 			<p>Year: {props.data.year}</p>
 			<p>{props.data.status}</p>
 			<img src={props.data.image}></img>
-		</>
+		</div>
 	)
 }

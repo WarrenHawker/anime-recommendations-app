@@ -1,3 +1,11 @@
 .recommendations-container {
 	position: relative;
 }
+
+.anime-container span {
+	color: var(--color-primary-base);
+	font-size: 0.75em;
+	float: right;
+	margin-top: 1em;
+	font-size: var(--font-size-base);
+}

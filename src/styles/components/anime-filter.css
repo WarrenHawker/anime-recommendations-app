@@ -1,12 +1,17 @@
+fieldset {
+	border-color: var(--color-primary-dark);
+}
+
 legend {
 	font-family: var(--font-primary);
 	font-weight: var(--font-bold);
+	color: var(--color-primary-dark);
 }
 
 label {
 	font-family: var(--font-secondary);
 	font-weight: var(--font-reg);
-	cursor: pointer;
+	color: var(--color-contrast-dark);
 }
 
 .fieldset-container,
@@ -15,7 +20,89 @@ label {
 	grid-template-columns: 1fr 1fr;
 }
 
-.single-column {
-	display: flex;
-	flex-direction: column;
+.scores-filter-container {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(5, 1fr);
+}
+
+.filter-container {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin-bottom: 0.5em;
+	padding-left: 35px;
+}
+
+.filter-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: var(--color-contrast-light);
+}
+
+.checkmark.circle {
+	border-radius: 50%;
+}
+
+.filter-container:hover input ~ .checkmark {
+	background-color: var(--color-contrast-base);
+}
+
+.filter-container input:checked ~ .checkmark {
+	background-color: var(--color-contrast-dark);
+}
+
+.checkmark:after {
+	left: 7px;
+	top: 3px;
+	width: 6px;
+	height: 11px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+.filter-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+@media all and (min-width: 1000px) {
+	form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.double-column {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.single-column {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	#btn-clear-type,
+	#btn-clear-status {
+		margin-top: 3.5em;
+	}
 }
