@@ -2,10 +2,74 @@
 	position: relative;
 }
 
-.anime-card span {
+.anime-card {
+	border-bottom: 2px solid var(--color-primary-base);
+	margin-bottom: 2em;
+}
+
+.anime-card .title {
+	display: grid;
+	grid-template-columns: auto 5em;
+	margin-bottom: 0.5em;
+}
+
+.anime-card .title p {
+	margin: auto 0 auto 0;
+}
+
+.anime-card .title p {
 	color: var(--color-primary-base);
+}
+
+.genres-image-container {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	margin-bottom: 2em;
+}
+
+.genres-image-container img {
+	grid-column: 2 / 3;
+	grid-row: 1 / 3;
+}
+
+.anime-card .genres span,
+.anime-card .themes span {
+	color: var(--color-contrast-light);
 	font-size: 0.75em;
-	float: right;
+}
+
+.anime-info {
+	display: grid;
+}
+
+.anime-meta-data {
 	margin-top: 1em;
-	font-size: var(--font-size-base);
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
+.anime-meta-data p {
+	font-weight: var(--font-bold);
+}
+
+@media all and (min-width: 1000px) {
+	.recommendations-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		gap: 2em;
+	}
+	.anime-card {
+		border: 2px solid var(--color-primary-base);
+		padding: 1em;
+		position: relative;
+	}
+
+	.anime-card button {
+		position: absolute;
+		bottom: 0;
+	}
+
+	.anime-info {
+		padding-bottom: 3em;
+	}
 }

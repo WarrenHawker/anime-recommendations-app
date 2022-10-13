@@ -11,11 +11,9 @@ export default function AnimeList(props) {
 	})
 
 	return (
-		<div>
+		<>
 			{animeDisplay}
-		</div>
+		</>
 
-	)
-	
-	
+	)	
 }

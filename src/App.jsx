@@ -78,7 +78,7 @@ export default function App() {
         setLoading(false);
       }) 
       .then(
-        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 300)
+        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 200)
       )
   }
 
