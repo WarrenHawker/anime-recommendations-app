@@ -2,7 +2,7 @@ export default function Anime(props) {
 	
 	//prettier-ignore
 	return (
-		<div className="anime-container">
+		<div className="anime-card">
 			<h1>{props.data.title}<span>{props.data.type=='TV'? 'TV Series' : 'Movie'}</span></h1>
 			<p>{props.data.rating}</p>
 			<p>score:{props.data.score}</p>

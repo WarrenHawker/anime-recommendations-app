@@ -2,7 +2,7 @@
 	position: relative;
 }
 
-.anime-container span {
+.anime-card span {
 	color: var(--color-primary-base);
 	font-size: 0.75em;
 	float: right;

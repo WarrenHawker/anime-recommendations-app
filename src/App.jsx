@@ -20,6 +20,26 @@ export default function App() {
 
   useEffect(() => {
     if(fetchData.current) {
+      fetchResults();
+    } else {
+      fetchData.current = true;
+    } 
+  }, [options])
+
+  const setAnimeFilter = (data) => {
+    setOptions({
+      type: data.type,
+      genres: data.genres.toString(),
+      status: data.status,
+      min_score: data.score, 
+      rating: data.rating,
+      limit: null, 
+      page: null, 
+    })
+    setLoading(true);
+  }
+
+  const fetchResults = () => {
       let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
       Object.entries(options).forEach(([key, value]) => {
         if(value) {
@@ -56,40 +76,31 @@ export default function App() {
         })
         setSearchData({metaData, animeData});
         setLoading(false);
-      })
-      
-    }
-    else {
-      fetchData.current = true;
-    } 
-  }, [options])
-
-  function setAnimeFilter(data) {
-    setOptions({
-      type: data.type,
-      genres: data.genres.toString(),
-      status: data.status,
-      min_score: data.score, 
-      rating: data.rating,
-      limit: null, 
-      page: null, 
-    })
-    setLoading(true);
+      }) 
+      .then(
+        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 300)
+      )
   }
-    console.log(searchData)
+
   return (
     <main>
-      <h1>Anime Finder</h1>
-      <h2>Discover your next anime binge</h2>
-      <h3>Use the filters below to find the perfect anime for you!</h3>
-      <AnimeFilter setAnimeFilter={setAnimeFilter}/>
-      <div className="recommendations-container">
+      <header>
+        <h1>Anime Finder</h1>
+        <h2>Discover your next anime binge</h2>
+        <p>Use the filters below to find the perfect anime for you!</p>
+      </header>
+      
+      <section>
+        <AnimeFilter setAnimeFilter={setAnimeFilter}/>
+      </section>
+      
+      <section className="recommendations-container">
         {searchData ? 
           searchData.animeData<1 ? 
-            <h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3> : <AnimeList data={searchData}/>
+            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}
-      </div>
+      </section>
       
     </main>
   )
