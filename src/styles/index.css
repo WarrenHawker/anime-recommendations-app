@@ -4,6 +4,7 @@
 @import url('./components/anime-filter.css');
 @import url('./components/spinner-loader.css');
 @import url('./components/recommendations.css');
+@import url('./components/pagination.css');
 
 *,
 *::after,

@@ -1,0 +1,33 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: 0.5em;
+	padding: 1em 0;
+	cursor: pointer;
+	flex-wrap: wrap;
+}
+
+.pagination li {
+	list-style: none;
+	font-family: var(--font-secondary);
+	font-size: var(--font-size-h4);
+	font-weight: var(--font-thin);
+	color: var(--color-contrast-base);
+	padding: 0.25em 0.5em;
+}
+
+.pagination li.active {
+	font-weight: var(--font-bold);
+}
+
+.pagination li:hover {
+	background-color: var(--color-contrast-light);
+}
+
+.pagination li.no-click {
+	cursor: auto;
+}
+
+.pagination li.no-click:hover {
+	background: none;
+}

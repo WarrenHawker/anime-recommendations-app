@@ -14,8 +14,8 @@ export default function App() {
     status: null,
     min_score: null, //0-10
     rating: null,
-    limit: null, //1-25 number of anime per page
-    page: null, //returned page (if more than 25 entries)
+    limit: 10, //1-25 number of anime per page
+    page: 5, //returned page (if more than 25 entries)
   });
 
   useEffect(() => {
@@ -33,8 +33,7 @@ export default function App() {
       status: data.status,
       min_score: data.score, 
       rating: data.rating,
-      limit: null, 
-      page: null, 
+      limit: data.limit, 
     })
     setLoading(true);
   }
@@ -78,7 +77,7 @@ export default function App() {
         setLoading(false);
       }) 
       .then(
-        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 200)
+        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 500)
       )
   }
 
@@ -91,13 +90,13 @@ export default function App() {
       </header>
       
       <section>
-        <AnimeFilter setAnimeFilter={setAnimeFilter}/>
+        <AnimeFilter setAnimeFilter={setAnimeFilter} pageLimit={options.limit}/>
       </section>
       
-      <section className="recommendations-container">
+      <section>
         {searchData ? 
           searchData.animeData<1 ? 
-            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData}/>
+            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}
       </section>

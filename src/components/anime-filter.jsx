@@ -7,6 +7,7 @@ export default function AnimeFilter(props) {
   const [minRating, setMinRating] = useState()
   const [chosenStatus, setChosenStatus] = useState()
   const [chosenType, setChosenType] = useState()
+  const [pageLimit, setPageLimit] = useState(props.pageLimit)
 
   const genreSelectToggle = (e) => {
     const selectedID = e.target.id.slice(6);
@@ -94,6 +95,10 @@ export default function AnimeFilter(props) {
     )
   })
 
+  const limitSelectToggle = (e) => {
+    setPageLimit(e.target.value)
+  }
+
   const handleFormSubmission = (e) => {
     e.preventDefault();
     const genres = genresSelected.filter(genre => genre.isChecked)
@@ -102,6 +107,7 @@ export default function AnimeFilter(props) {
       status: chosenStatus,
       rating: minRating,
       score: minScore,
+      limit: pageLimit,
       genres: genres.map((genre) => {
         return genre.id
       })
@@ -165,6 +171,11 @@ export default function AnimeFilter(props) {
           <button className="btn btn-secondary" id="btn-clear-type" onClick={clearFilter}>Clear Filter</button>
         </fieldset>
       </div>
+      <fieldset className="slider-container">
+        <legend>Number of items per page</legend>
+        <input onInput={limitSelectToggle} name="limit" type="range" min="1" max="25" step="1" defaultValue={pageLimit}></input>
+        <p>{pageLimit}</p>
+      </fieldset>
       <button className="btn btn-primary">Search</button>
     </form>
   )
