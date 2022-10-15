@@ -15,7 +15,7 @@ export default function App() {
     min_score: null, //0-10
     rating: null,
     limit: 10, //1-25 number of anime per page
-    page: 5, //returned page (if more than 25 entries)
+    page: 1, //returned page (if more than 25 entries)
   });
 
   useEffect(() => {
@@ -27,13 +27,16 @@ export default function App() {
   }, [options])
 
   const setAnimeFilter = (data) => {
-    setOptions({
-      type: data.type,
-      genres: data.genres.toString(),
-      status: data.status,
-      min_score: data.score, 
-      rating: data.rating,
-      limit: data.limit, 
+    setOptions((prevOptions) => {
+      return {
+        type: data.type,
+        genres: data.genres.toString(),
+        status: data.status,
+        min_score: data.score, 
+        rating: data.rating,
+        limit: data.limit,
+        page: prevOptions.page, 
+      }
     })
     setLoading(true);
   }
@@ -77,8 +80,26 @@ export default function App() {
         setLoading(false);
       }) 
       .then(
-        setTimeout(() => document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"}), 500)
+        setTimeout(() => document.querySelector('.pagination').scrollIntoView({behavior: "smooth", block: "start"}), 500)
       )
+  }
+
+  const nextPage = () => {
+    setOptions((prevOptions) => {
+      return {...prevOptions, page: prevOptions.page+1}
+    })
+  }
+
+  const prevPage = () => {
+    setOptions((prevOptions) => {
+      return {...prevOptions, page: prevOptions.page-1}
+    })
+  }
+
+  const pageSelect = (selectedPage) => {
+    setOptions((prevOptions) => {
+      return {...prevOptions, page: selectedPage}
+    })
   }
 
   return (
@@ -96,7 +117,7 @@ export default function App() {
       <section>
         {searchData ? 
           searchData.animeData<1 ? 
-            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options}/>
+            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options} nextPage={nextPage} prevPage={prevPage} pageSelect={pageSelect}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}
       </section>

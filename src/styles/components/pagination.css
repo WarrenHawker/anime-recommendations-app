@@ -16,7 +16,7 @@
 	padding: 0.25em 0.5em;
 }
 
-.pagination li.active {
+.pagination li.selected {
 	font-weight: var(--font-bold);
 }
 
@@ -24,10 +24,14 @@
 	background-color: var(--color-contrast-light);
 }
 
-.pagination li.no-click {
-	cursor: auto;
+.pagination li.dots {
+	cursor: default;
 }
 
-.pagination li.no-click:hover {
+.pagination li.dots:hover {
 	background: none;
+}
+
+.pagination li.disabled {
+	pointer-events: none;
 }
