@@ -42,7 +42,7 @@ export default function App() {
   }
 
   const fetchResults = () => {
-      let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
+      let fetchUrl = new URL('https://api.jikan.moe/v4/anime?sfw=true');
       Object.entries(options).forEach(([key, value]) => {
         if(value) {
           fetchUrl.searchParams.append(key, value)
