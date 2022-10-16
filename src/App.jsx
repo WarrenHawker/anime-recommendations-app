@@ -123,7 +123,7 @@ export default function App() {
       <section>
         {searchData ? 
           searchData.animeData<1 && !loading ? 
-            <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options} nextPage={nextPage} prevPage={prevPage} pageSelect={pageSelect}/>
+            <div className="anime-card"><h3 className="error-message">I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options} nextPage={nextPage} prevPage={prevPage} pageSelect={pageSelect}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}
       </section>
