@@ -24,10 +24,9 @@ export default function AnimeFilter(props) {
 
   const genresDisplay = genres.map((genre) => {
     return (
-      <label className="filter-container checkbox" key={genre.id} htmlFor={`genre-${genre.id}`}>{genre.name}
-        <input onChange={genreSelectToggle} type="checkbox" id={`genre-${genre.id}`} name={`genre-${genre.id}`}></input>
-        <span className="checkmark square"></span>
-      </label>
+        <label className="form-control" key={genre.id} htmlFor={`genre-${genre.id}`}>
+          <input onChange={genreSelectToggle} type="checkbox" id={`genre-${genre.id}`} name={`genre-${genre.id}`}/>
+        {genre.name}</label>
     )
   })
 
@@ -37,15 +36,13 @@ export default function AnimeFilter(props) {
 
   const scoresDisplay = scores.map((score) => {
     return (
-      <label className="filter-container radio" key={score.id} htmlFor={`score-${score.id}`}>
-        {`(${score.id}) ${score.name}`}
+      <label className="form-control radio" key={score.id} htmlFor={`score-${score.id}`}>
+        
         
           <input 
             onChange={scoreSelectToggle} type="radio" id={`score-${score.id}`} name="score" value={`score-${score.id}`}>
           </input>
-
-          <span className="checkmark circle"></span>
-      </label>
+          {`(${score.id}) ${score.name}`}</label>
     )
   })
 
@@ -55,14 +52,11 @@ export default function AnimeFilter(props) {
 
   const ratingsDisplay = ratings.map((rating) => {
     return (
-      <label className="filter-container radio" key={rating.id} htmlFor={`rating-${rating.id}`}>
-        {`${rating.name} (${rating.description})`}
+      <label  className="form-control radio" key={rating.id} htmlFor={`rating-${rating.id}`}>
           <input 
             onChange={ratingSelectToggle} type="radio" id={`rating-${rating.id}`} name="rating" value={`rating-${rating.id}`}>
           </input>
-
-          <span className="checkmark circle"></span>
-      </label>
+          {`${rating.name} (${rating.description})`}</label>
     )
   })
 
@@ -72,13 +66,11 @@ export default function AnimeFilter(props) {
 
   const statusesDisplay = statuses.map((status)=> {
     return ( 
-      <label className="filter-container radio" key={status.id} htmlFor={`status-${status.id}`}>{status.name}
+      <label  className="form-control radio" key={status.id} htmlFor={`status-${status.id}`}>
         <input 
           onClick={statusSelectToggle} type="radio" id={`status-${status.id}`} name="status" value={`status-${status.name}`}>
         </input>
-
-        <span className="checkmark circle"></span>
-      </label>
+        {status.name}</label>
     )
   })
 
@@ -88,10 +80,9 @@ export default function AnimeFilter(props) {
 
   const typesDisplay = types.map((type) => {
     return (
-      <label className="filter-container radio" key={type.id} htmlFor={`type-${type.id}`}>{type.name}
+      <label  className="form-control radio" key={type.id} htmlFor={`type-${type.id}`}>
         <input onChange ={typeSelectToggle} type="radio" id={`type-${type.id}`} name="type" value={`type-${type.name}`}></input>
-        <span className="checkmark circle"></span>
-      </label>
+        {type.name}</label>
     )
   })
 
@@ -173,8 +164,8 @@ export default function AnimeFilter(props) {
       </div>
       <fieldset className="slider-container">
         <legend>Number of items per page</legend>
-        <input onInput={limitSelectToggle} name="limit" type="range" min="1" max="25" step="1" defaultValue={pageLimit}></input>
-        <p>{pageLimit}</p>
+        <input tabIndex="0" onInput={limitSelectToggle} name="limit" type="range" min="1" max="25" step="1" defaultValue={pageLimit}></input>
+        <label class="page-limit-label" htmlFor="limit">{pageLimit}</label>
       </fieldset>
       <button className="btn btn-primary">Search</button>
     </form>

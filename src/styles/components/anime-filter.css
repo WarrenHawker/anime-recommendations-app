@@ -12,6 +12,13 @@ legend {
 label {
 	font-family: var(--font-secondary);
 	font-weight: var(--font-reg);
+	font-weight: bold;
+	line-height: 1.1;
+	display: grid;
+	grid-template-columns: 1em auto;
+	gap: 1em;
+	cursor: pointer;
+	margin-top: 1em;
 }
 
 .fieldset-container,
@@ -26,64 +33,57 @@ label {
 	grid-template-rows: repeat(5, 1fr);
 }
 
-.filter-container {
-	display: block;
-	position: relative;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	margin-bottom: 0.5em;
-	padding-left: 35px;
-}
-
-.filter-container input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
-}
-
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 20px;
-	width: 20px;
+input[type='checkbox'],
+input[type='radio'] {
+	-webkit-appearance: none;
+	appearance: none;
 	background-color: var(--color-contrast-light);
+	margin: 0;
+	font: inherit;
+	color: currentColor;
+	width: 1.5em;
+	height: 1.5em;
+	border: 0.15em solid var(--color-contrast-base);
+	border-radius: 0.15em;
+	transform: translateY(-0.075em);
+	display: grid;
+	place-content: center;
 }
 
-.checkmark.circle {
+input[type='radio'] {
 	border-radius: 50%;
 }
 
-.filter-container:hover input ~ .checkmark {
-	background-color: var(--color-contrast-base);
+input[type='checkbox']::before,
+input[type='radio']::before {
+	content: '';
+	width: 0.7em;
+	height: 0.7em;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	transform: scale(0);
+	transform-origin: bottom left;
+	transition: 120ms transform ease-in-out;
+	box-shadow: inset 1em 1em var(--form-control-color);
+	background-color: #ffffff;
 }
 
-.filter-container input:checked ~ .checkmark {
+input[type='checkbox']:checked,
+input[type='radio']:checked {
 	background-color: var(--color-contrast-bright);
 }
 
-.checkmark:after {
-	left: 7px;
-	top: 3px;
-	width: 6px;
-	height: 11px;
-	border: solid white;
-	border-width: 0 3px 3px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-	content: '';
-	position: absolute;
-	display: none;
+input[type='checkbox']:checked::before,
+input[type='radio']:checked::before {
+	transform: scale(1);
 }
 
-.filter-container input:checked ~ .checkmark:after {
-	display: block;
+input[type='checkbox']:focus,
+input[type='checkbox']:hover,
+input[type='radio']:focus,
+input[type='radio']:hover {
+	cursor: pointer;
+	outline: max(2px, 0.15em) solid var(--color-contrast-bright);
+	outline-offset: max(2px, 0.15em);
 }
 
 .slider-container input {
@@ -118,8 +118,10 @@ label {
 	cursor: pointer;
 }
 
-.slider-container p {
+.page-limit-label {
+	display: block;
 	text-align: center;
+	margin-top: 0;
 }
 
 @media all and (min-width: 1000px) {
