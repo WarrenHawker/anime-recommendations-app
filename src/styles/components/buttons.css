@@ -9,29 +9,31 @@
 	display: block;
 	letter-spacing: 2px;
 	word-spacing: 2px;
-	color: var(--color-contrast-dark);
+	color: black;
 }
 
 .btn-primary {
 	background-color: var(--color-primary-base);
-	border: 2px solid var(--color-contrast-dark);
+	border: 2px solid #ffffff;
 	font-size: var(--font-size-h5);
+	color: #ffffff;
 }
 
 .btn-secondary {
 	background-color: transparent;
+	border: 2px solid var(--color-primary-base);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-	background-color: var(--color-primary-dark);
+	background-color: var(--color-primary-bright);
 	color: #ffffff;
 	border: 2px solid #ffffff;
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus {
-	background-color: var(--color-contrast-base);
+	background-color: var(--color-primary-base);
 	color: #ffffff;
 	border: 2px solid #ffffff;
 }

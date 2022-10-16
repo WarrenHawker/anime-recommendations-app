@@ -1,25 +1,11 @@
 :root {
-	--color-primary-base: hsl(167, 47%, 43%);
-	--color-primary-light: hsl(167, 50%, 73%);
-	--color-primary-lighter: hsl(167, 50%, 80%);
-	--color-primary-dark: hsl(167, 46%, 27%);
-	--color-primary-darker: hsl(167, 50%, 21%);
+	--color-background: #f7f8fc;
 
-	--color-primary-background: hsl(167, 100%, 91%);
+	--color-primary-base: #cf5a24;
+	--color-primary-bright: #f34d00;
+	--color-primary-light: #ffaf8b;
 
-	--color-secondary-base: hsl(57, 47%, 43%);
-	--color-secondary-light: hsl(57, 50%, 73%);
-	--color-secondary-lighter: hsl(57, 50%, 80%);
-	--color-secondary-dark: hsl(57, 46%, 27%);
-	--color-secondary-darker: hsl(57, 50%, 21%);
-
-	--color-secondary-background: hsl(57, 100%, 91%);
-
-	--color-contrast-base: hsl(347, 47%, 43%);
-	--color-contrast-light: hsl(347, 50%, 73%);
-	--color-contrast-lighter: hsl(347, 50%, 80%);
-	--color-contrast-dark: hsl(347, 46%, 27%);
-	--color-contrast-darker: hsl(347, 50%, 21%);
-
-	--color-contrast-background: hsl(347, 100%, 91%);
+	--color-contrast-base: #2499cf;
+	--color-contrast-bright: #00a6f3;
+	--color-contrast-light: #8bdaff;
 }

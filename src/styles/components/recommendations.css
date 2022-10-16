@@ -17,10 +17,6 @@
 	margin: auto 0 auto 0;
 }
 
-.anime-card .title p {
-	color: var(--color-primary-base);
-}
-
 .genres-image-container {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
@@ -34,7 +30,7 @@
 
 .anime-card .genres span,
 .anime-card .themes span {
-	color: var(--color-contrast-light);
+	color: var(--color-contrast-base);
 	font-size: 0.75em;
 }
 
