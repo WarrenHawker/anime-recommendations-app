@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react"
-import axios from "axios";
 import AnimeList from "./components/anime-list";
 import AnimeFilter from "./components/anime-filter";
 
@@ -18,6 +17,8 @@ export default function App() {
     page: 1, //returned page (if more than 25 entries)
   });
 
+  console.log(searchData)
+
   useEffect(() => {
     if(fetchData.current) {
       fetchResults();
@@ -25,6 +26,16 @@ export default function App() {
       fetchData.current = true;
     } 
   }, [options])
+
+  useEffect(() => {
+    if(searchData) {
+      if(searchData.animeData.length > 0) {
+        document.querySelector('.pagination').scrollIntoView({behavior: "smooth", block: "start"})
+      } else {
+        document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"})
+      }
+    }
+  },[searchData])
 
   const setAnimeFilter = (data) => {
     setOptions((prevOptions) => {
@@ -41,47 +52,44 @@ export default function App() {
     setLoading(true);
   }
 
-  const fetchResults = () => {
-      let fetchUrl = new URL('https://api.jikan.moe/v4/anime?sfw=true');
-      Object.entries(options).forEach(([key, value]) => {
-        if(value) {
-          fetchUrl.searchParams.append(key, value)
-        }
-      })
-      axios.get(fetchUrl)
-      .then(res => {
-        const metaData = {
-          currentPage: res.data.pagination.current_page,
-          totalPages: res.data.pagination.last_visible_page,
-          resultsPerPage: res.data.pagination.items.per_page,
-          totalResults: res.data.pagination.items.total,
-        }
-        const animeData = res.data.data.map((anime) => {
-          return {
-            title: anime.title,
-            genres: anime.genres.map((genre) => {
-              return genre.name
-            }),
-            themes: anime.themes.map((theme) => {
-              return theme.name
-            }),
-            synopsis: anime.synopsis,
-            image: anime.images.jpg.image_url,
-            episodes: anime.episodes,
-            type: anime.type,
-            rating: anime.rating,
-            status: anime.status,
-            year: anime.year,
-            score: anime.score,
-            id: anime.mal_id
-          }
-        })
-        setSearchData({metaData, animeData});
-        setLoading(false);
-      }) 
-      .then(
-        setTimeout(() => document.querySelector('.pagination').scrollIntoView({behavior: "smooth", block: "start"}), 500)
-      )
+  const fetchResults = async () => {
+    let fetchUrl = new URL('https://api.jikan.moe/v4/anime?sfw=true');
+    Object.entries(options).forEach(([key, value]) => {
+      if(value) {
+        fetchUrl.searchParams.append(key, value)
+      }
+    })
+    const response = await fetch(fetchUrl)
+    const data = await response.json()
+    const metaData = {
+      currentPage: data.pagination.current_page,
+      totalPages: data.pagination.last_visible_page,
+      resultsPerPage: data.pagination.items.per_page,
+      totalResults: data.pagination.items.total,
+    }
+    const animeData = data.data.map((anime) => {
+      return {
+        title: anime.title,
+        genres: anime.genres.map((genre) => {
+          return genre.name
+        }),
+        themes: anime.themes.map((theme) => {
+          return theme.name
+        }),
+        synopsis: anime.synopsis,
+        image: anime.images.jpg.image_url,
+        episodes: anime.episodes,
+        type: anime.type,
+        rating: anime.rating,
+        status: anime.status,
+        year: anime.year,
+        score: anime.score,
+        id: anime.mal_id
+      }
+    })
+    setSearchData({metaData, animeData});
+    setLoading(false);
+    
   }
 
   const nextPage = () => {
@@ -116,7 +124,7 @@ export default function App() {
       
       <section>
         {searchData ? 
-          searchData.animeData<1 ? 
+          searchData.animeData<1 && !loading ? 
             <div className="anime-card"><h3>I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options} nextPage={nextPage} prevPage={prevPage} pageSelect={pageSelect}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}

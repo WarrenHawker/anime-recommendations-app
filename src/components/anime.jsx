@@ -10,7 +10,7 @@ export default function Anime(props) {
 	
 	//prettier-ignore
 	return (
-		<div style={showInfo? {gridRow: 'span 3'} : null} className="anime-card">
+		<article style={showInfo? {gridRow: 'span 3'} : null} className="anime-card">
 			<div className="title">
 				<h1>{props.data.title}</h1>
 				<p>{props.data.type=='TV'? 'TV Series' : 'Movie'}</p>
@@ -34,6 +34,6 @@ export default function Anime(props) {
 				</div> : null
 			}
 			<button className="btn btn-secondary" onClick={(event) => handleClick(event)}>{showInfo ? "hide info" : "show info"}</button>
-		</div>
+		</article>
 	)
 }
