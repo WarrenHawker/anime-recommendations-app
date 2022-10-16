@@ -17,8 +17,6 @@ export default function App() {
     page: 1, //returned page (if more than 25 entries)
   });
 
-  console.log(searchData)
-
   useEffect(() => {
     if(fetchData.current) {
       fetchResults();
