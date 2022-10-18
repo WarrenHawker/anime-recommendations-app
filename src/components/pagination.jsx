@@ -20,11 +20,11 @@ export default function Pagination(props) {
       })
       
       return (
-        <div className="pagination">
+        <>
           <li className={props.metaData.currentPage==1 ? "disabled" : null} onClick={props.prevPage}><i className="fas fa-chevron-left"></i></li>
           {paginationDisplay}  
           <li className={props.metaData.currentPage==lastPage ? "disabled" : null} onClick={props.nextPage}><i className="fas fa-chevron-right"></i></li>
-        </div>
+        </>
       )
     } 
   }

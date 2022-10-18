@@ -17,6 +17,8 @@ export default function App() {
     page: 1, //returned page (if more than 25 entries)
   });
 
+  console.log(searchData)
+
   useEffect(() => {
     if(fetchData.current) {
       fetchResults();
@@ -27,9 +29,11 @@ export default function App() {
 
   useEffect(() => {
     if(searchData) {
-      if(searchData.animeData.length > 0) {
+      if(searchData.animeData.length >= 1) {
+        console.log("yes")
         document.querySelector('.pagination').scrollIntoView({behavior: "smooth", block: "start"})
       } else {
+        console.log("no")
         document.querySelector('.anime-card').scrollIntoView({behavior: "smooth", block: "start"})
       }
     }
@@ -51,7 +55,7 @@ export default function App() {
   }
 
   const fetchResults = async () => {
-    let fetchUrl = new URL('https://api.jikan.moe/v4/anime?sfw=true');
+    let fetchUrl = new URL('https://api.jikan.moe/v4/anime?');
     Object.entries(options).forEach(([key, value]) => {
       if(value) {
         fetchUrl.searchParams.append(key, value)
@@ -122,7 +126,7 @@ export default function App() {
       
       <section>
         {searchData ? 
-          searchData.animeData<1 && !loading ? 
+          searchData.animeData.length<1 && !loading? 
             <div className="anime-card"><h3 className="error-message">I'm sorry, we couldn't find any results. Please change the filter settings and try again</h3></div> : <AnimeList data={searchData} options={options} nextPage={nextPage} prevPage={prevPage} pageSelect={pageSelect}/>
          : null}
         {loading ? <div className="spinner-loader"></div> : null}

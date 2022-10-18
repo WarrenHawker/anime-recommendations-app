@@ -13,11 +13,15 @@ export default function AnimeList(props) {
 
 	return (
 		<>
-			<Pagination pageSelect={props.pageSelect} nextPage={props.nextPage} prevPage={props.prevPage} metaData={props.data.metaData}/>
+			<div className="pagination">
+				<Pagination pageSelect={props.pageSelect} nextPage={props.nextPage} prevPage={props.prevPage} metaData={props.data.metaData}/>
+			</div>
 			<div className="recommendations-container">
 				{animeDisplay}
 			</div>
-			<Pagination pageSelect={props.pageSelect} nextPage={props.nextPage} prevPage={props.prevPage} metaData={props.data.metaData}/>
+			<div className="pagination">
+				<Pagination pageSelect={props.pageSelect} nextPage={props.nextPage} prevPage={props.prevPage} metaData={props.data.metaData}/>
+			</div>
 		</>
 
 	)	
